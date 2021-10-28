@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { useThemeUpdate } from '../../Hooks/ThemeContext'
+import { useThemeUpdate } from '../../Hooks/useThemeContext'
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -53,12 +53,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function CustomizedSwitches() {
-  // const update = useThemeUpdate()
   return (
     <FormGroup>
       <FormControlLabel
         control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked onChange={useThemeUpdate()}/>}
-        label="Dark Mode"
+        label=""
       />
     </FormGroup>
   );

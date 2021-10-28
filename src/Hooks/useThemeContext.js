@@ -8,7 +8,6 @@ export function useTheme() {
 }
 
 export function useThemeUpdate() {
-    console.log("working")
     return useContext(ThemeUpdateContext)
 }
 

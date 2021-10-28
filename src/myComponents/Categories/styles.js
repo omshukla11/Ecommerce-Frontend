@@ -1,10 +1,10 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
     root: {
         maxWidth: '100%',
         marginTop: '100px',
-        marginBottom: '75px'
+        marginBottom: '100px',
     },
     media: {
         height: 300,

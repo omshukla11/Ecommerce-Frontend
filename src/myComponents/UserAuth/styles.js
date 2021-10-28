@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 
 export default makeStyles(() => ({
-    root: {
+    form: {
         maxWidth: '100%',
         marginTop: '100px',
         marginBottom: '75px'

@@ -1,33 +1,77 @@
 import './App.css';
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Product, Navbar } from './myComponents';
-import { Grid } from '@mui/material';
-import {ThemeProvider} from "./Hooks/ThemeContext"
+import React from 'react';
+import { Navbar, Products, Categories, Register, Login } from './myComponents';
+import { ThemeProvider } from "./Hooks/useThemeContext";
+import { Protected, ReverseProtected } from './Hooks/ProtectedRoute';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import useToken from './Hooks/useToken';
 
 function App() {
-  const [prod, setProd] = useState([])
 
-  useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/task/`)
-      .then(res => {
-        setProd(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
+  const { token, setToken } = useToken();
+
+  // if (!token) {
+  //   return (
+  //     <ThemeProvider>
+  //       <Router>
+  //         <Navbar />
+  //         <Switch>
+  //           <Route exact path="/register/">
+  //             <Register />
+  //           </Route>
+  //           <Route exact path="/">
+  //             <Login />
+  //           </Route>
+  //         </Switch>
+  //       </Router>
+  //     </ThemeProvider>
+  //   );
+  // }
+
+  
+  // return (
+  //   <ThemeProvider>
+  //     <Router>
+  //       <Navbar />
+  //       <Switch>
+  //         <Route exact path="/register/">
+  //           <Register />
+  //         </Route>
+  //         <Route exact path="/login/">
+  //           <Login />
+  //         </Route>
+  //         <Route exact path="/home/">
+  //           <Products />
+  //         </Route>
+  //         <Route exact path="/categories/">
+  //           <Categories />
+  //         </Route>
+  //         <Route exact path="/categories/:subcat/">
+  //           <Products />
+  //         </Route>
+  //       </Switch>
+  //     </Router>
+  //   </ThemeProvider>
+  // );
   return (
     <ThemeProvider>
-      <Navbar />
-      <main>
-        <Grid container justify="center" spacing={4}>
-          {prod.map((i) => {
-            return <Product prod={i} key={i.id}/>
-          })}
-        </Grid>
-      </main>
-    </ThemeProvider>  
+      <Router>
+        <Navbar />
+        <Switch>
+          
+          <ReverseProtected exact path="/register/" component={Register} />
+          
+          <ReverseProtected exact path="/login/" component={Login} />
+          
+          <Protected exact path="/" component={Products} token={token} />
+
+          <Protected exact path="/categories/" component={Categories}/>
+          
+          <Protected exact path="/categories/:subcat/" component={Products} token={token}/>
+        
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 

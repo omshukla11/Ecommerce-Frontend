@@ -16,6 +16,11 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
         display: 'flex',
         textDecoration: 'none',
+        color: 'white'
+    },
+    link:{
+        color: 'white !important' ,
+        textTransform: 'none',
     },
     image: {
         marginRight: '10px',
