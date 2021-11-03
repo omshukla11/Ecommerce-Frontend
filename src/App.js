@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
-import { Navbar, Products, Categories, Register, Login } from './myComponents';
+import { Navbar, Products, Categories, Register, Login, Profile, Verification } from './myComponents';
 import { ThemeProvider } from "./Hooks/useThemeContext";
 import { Protected, ReverseProtected } from './Hooks/ProtectedRoute';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import useToken from './Hooks/useToken';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
   //   );
   // }
 
-  
+
   // return (
   //   <ThemeProvider>
   //     <Router>
@@ -54,24 +54,28 @@ function App() {
   //   </ThemeProvider>
   // );
   return (
-    <ThemeProvider>
-      <Router>
-        <Navbar />
-        <Switch>
-          
-          <ReverseProtected exact path="/register/" component={Register} />
-          
-          <ReverseProtected exact path="/login/" component={Login} />
-          
-          <Protected exact path="/" component={Products} token={token} />
+      <ThemeProvider>
+        <Router>
+          <Navbar />
+          <Switch>
 
-          <Protected exact path="/categories/" component={Categories}/>
-          
-          <Protected exact path="/categories/:subcat/" component={Products} token={token}/>
-        
-        </Switch>
-      </Router>
-    </ThemeProvider>
+            <Route exact path="/verify-user/user-id=:token" component={Verification}/>
+
+            <ReverseProtected exact path="/register/" component={Register} />
+
+            <ReverseProtected exact path="/login/" component={Login} />
+
+            <Protected exact path="/" component={Products} token={token} />
+
+            <Protected exact path="/categories/" component={Categories} />
+
+            <Protected exact path="/categories/:subcat/" component={Products} token={token} />
+
+            <Protected exact path="/profile" component={Profile} token={token} />
+
+          </Switch>
+        </Router>
+      </ThemeProvider>
   );
 }
 

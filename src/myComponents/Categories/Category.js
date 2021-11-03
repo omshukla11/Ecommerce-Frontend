@@ -4,10 +4,13 @@ import { Grid, Card, CardContent, Typography, List, ListItem, ListItemButton, Li
 import { useTheme } from '../../Hooks/useThemeContext'
 import useStyles from './styles'
 import { Link } from 'react-router-dom';
+import useToken from '../../Hooks/useToken'
 
 
 
 export default function Category({ name, slug }) {
+
+    const token = useToken();
     const classes = useStyles();
     const [subcatlist, setSubcatlist] = useState([])
 
@@ -20,7 +23,7 @@ export default function Category({ name, slug }) {
             .catch(err => {
                 console.log(err)
             })
-    }, [slug])
+    }, [slug, token])
 
     let themestyle = {};
 

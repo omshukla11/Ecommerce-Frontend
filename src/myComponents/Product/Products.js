@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Grid } from '@mui/material'
 import { useParams } from "react-router-dom"
-
+import useToken from '../../Hooks/useToken';
 
 import { ProductItem } from '..'
 
-export default function Products({token}) {
+export default function Products() {
+
+  const {token, setToken } = useToken()
 
   const slug = useParams()
   const [prods, setProds] = useState([])
@@ -23,7 +25,7 @@ export default function Products({token}) {
       .catch(err => {
         console.log(err)
       })
-  }, [id])
+  }, [id, token])
   return (
     <main>
       <Grid container justify="center" spacing={4}>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { TextField, Box, Button, Typography } from "@mui/material";
 import useStyles from './styles';
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useToken from "../../Hooks/useToken";
-
 
 export default function Login() {
     const {token, setToken } = useToken()
@@ -14,7 +13,7 @@ export default function Login() {
 
     const classes = useStyles()
 
-    async function login({props}) {
+    async function login() {
 
         let item = { username, password }
 

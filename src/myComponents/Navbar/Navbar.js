@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom'
 import useToken from '../../Hooks/useToken';
 import { useHistory } from "react-router";
 
-export default function Navbar({ redirect }) {
+export default function Navbar() {
 
   const hist = useHistory()
 
@@ -55,8 +55,9 @@ export default function Navbar({ redirect }) {
               <img src={logo} alt="Ecommerce" height="25px" className={classes.image} />
               E-Commerce
             </Typography>
-            {i !== '/' ? <Button component={Link} to='/' variant="text" style={themestyle}>Home</Button> : ''}
-            {i !== '/categories/' ? <Button component={Link} to='/categories/' variant="text" style={themestyle}>Categories</Button> : ''}
+            {i === '/categories/' ? <><Button component={Link} to='/' variant="text" style={themestyle}>Home</Button> <Button component={Link} to='/profile/' variant="text" style={themestyle}>Your Profile</Button></>: ''}
+            {i === '/' ? <><Button component={Link} to='/categories/' variant="text" style={themestyle}>Categories</Button> <Button component={Link} to='/profile/' variant="text" style={themestyle}>Your Profile</Button></>: ''}
+            {i === '/profile/' ? <><Button component={Link} to='/' variant="text" style={themestyle}>Home</Button> <Button component={Link} to='/categories/' variant="text" style={themestyle}>Categories</Button> </>: ''}
             <div className={classes.grow} />
             <Button onClick={logout} component={Link} to='/login/' variant="text" style={themestyle}>Log Out</Button>
             <div className={classes.button}>

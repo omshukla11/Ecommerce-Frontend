@@ -27,7 +27,7 @@ export function Protected({component: Component, token: Token ,...rest}) {
     )
 }
 
-export function ReverseProtected({component: Component, ...rest}) {
+export function ReverseProtected({component: Component,  ...rest}) {
 
     const {token , setToken} = useToken()
 
@@ -40,7 +40,7 @@ export function ReverseProtected({component: Component, ...rest}) {
                 else {
                     return <Redirect to={
                         {
-                            pathname: '/home/',
+                            pathname: '/',
                             state: {
                                 from: props.location
                             }
